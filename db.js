@@ -1,20 +1,20 @@
-const {MongoClient} = require("mongodb");
-const URL = "mongodb://0.0.0.0:27017/cake"
+const {MongoClient} = require('mongodb')
+const URL = 'mongodb://0.0.0.0:27017/Cake'
 
 let dbConnection;
 
 module.exports = {
-    connectToDb: (cb) => {
+    connectToDb: (cd) =>{
         MongoClient
-            .connect(URL)
-            .then((client) => {
-                console.log("Connected to MongoDB");
-                dbConnection = client.db();
-                return cb
-            })
-            .catch((err) => {
-                return cb (err)
-            })
+        .connect(URL)
+        .then((client) => {
+            console.log('Connected to MongoDB');
+            dbConnection = client.db();
+            return cd ();
+        })
+        .catch((err) =>{
+            return cd (err);
+        })
     },
     getDb: () => dbConnection,
 }
